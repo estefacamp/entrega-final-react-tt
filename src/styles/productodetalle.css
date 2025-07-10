@@ -1,0 +1,32 @@
+/* 📱 Mobile */
+@media (max-width: 600px) {
+  .producto-card {
+    width: 80%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .producto-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .producto-card h2, .producto-card p {
+    font-size: 0.95em;
+  }
+}
+
+/* 📲 Tablet */
+@media (min-width: 600px) and (max-width: 992px) {
+  .producto-card {
+    width: 40%;
+  }
+}
+
+/* 💻 Desktop grande */
+@media (min-width: 992px) {
+  .producto-card {
+    width: 180px; /* o un % si querés autoajuste tipo width: 20% */
+  }
+}

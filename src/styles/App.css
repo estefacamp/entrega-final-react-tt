@@ -1,0 +1,13 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem; /* un poco menos para que no coma espacio en mobile */
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0.5rem;
+  }
+}

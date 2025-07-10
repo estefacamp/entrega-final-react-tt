@@ -1,0 +1,87 @@
+.producto-conteiner {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; /* ✅ esto asegura que se vean uno al lado del otro */
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    color: black;
+}
+
+.producto-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: bisque;
+    border: 1px solid #200909;
+    border-radius: 8px;
+    width: 180px;
+    height: 260px;
+    text-align: center;
+    padding: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto-card h2,
+.producto-card p {
+    margin: 0;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.producto-card button {
+    margin-top: auto;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.producto-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+/* 📱 Mobile */
+@media (max-width: 600px) {
+    .producto-card {
+      width: 80%;
+      height: auto;
+      padding: 12px;
+    }
+  
+    .producto-image {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 10px;
+    }
+  
+    .producto-card h2, .producto-card p {
+      font-size: 1em;
+    }
+  }
+  
+  /* 📲 Tablet */
+  @media (min-width: 600px) and (max-width: 992px) {
+    .producto-card {
+      width: 45%;
+      height: auto;
+    }
+  }
+  
+  /* 💻 Desktop grande */
+  @media (min-width: 992px) {
+    .producto-card {
+      width: 180px;
+      height: 260px;
+    }
+  }
+  

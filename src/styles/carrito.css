@@ -1,0 +1,189 @@
+.carrito-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    height:100px;
+}
+
+.carrito-card{
+    border: solid;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: bisque;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+      }
+      
+
+
+.carrito-titulo{
+    width: 20%;
+}
+
+.descripcion-carrito{
+    width: 40%;
+}
+
+.boton-carrito{
+    width: 3%;
+    height: 30%;
+}
+
+.carrito-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: block;
+      }
+      .producto-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #fff8dc;
+        text-align: center;
+        width: 220px;
+        overflow: hidden;
+      }
+      
+      .producto-image {
+        width: 100%;
+        max-width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+        margin: 0 auto;
+      }
+      .productos-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+ .detalle-container {
+  display: flex;
+  flex-wrap: wrap; /* ✔ permite que se adapte en pantallas chicas */
+  gap: 30px;
+  padding: 20px;
+  background-color: #fdf5e6;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 800px;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.detalle-imagen {
+  width: 100%;
+  max-width: 300px; /* ✔ limita el tamaño */
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.detalle-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: black;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.detalle-contador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: black;
+}
+
+.detalle-contador span {
+  font-size: 18px;
+  color: black;
+}
+             
+      
+  
+  /* ------------------------
+    Ajustes RESPONSIVE
+--------------------------*/
+
+/* 📱 Mobile - por debajo de 768px */
+@media (max-width: 768px) {
+  .carrito-card {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .carrito-titulo,
+  .descripcion-carrito,
+  .boton-carrito {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .carrito-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+  .detalle-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .detalle-imagen {
+    max-width: 80%;
+  }
+
+  .detalle-info {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+/* 📲 Tablet - entre 768px y 992px */
+@media (min-width: 768px) and (max-width: 992px) {
+  .carrito-card {
+    width: 80%;
+  }
+  .detalle-container {
+    max-width: 90%;
+  }
+}
+
+/* 💻 Desktop grande */
+@media (min-width: 992px) {
+  .carrito-card {
+    width: 60%;
+  }
+  .detalle-container {
+    max-width: 800px;
+  }
+}
