@@ -21,21 +21,21 @@ export function ProductosProvider({ children }) {
   const [productoEncontrado, setProductoEncontrado] = useState(null);
   const [ultimoDoc, setUltimoDoc] = useState(null);
 
-  // Obtener productos paginados
+  // ✅ Obtener productos paginados robusto
   async function obtenerProductosPaginados(cantidad = 5) {
     try {
       let q;
       if (ultimoDoc) {
         q = query(
           collection(db, 'productos'),
-          orderBy('name'),
+          orderBy('name', 'asc'),
           startAfter(ultimoDoc),
           limit(cantidad)
         );
       } else {
         q = query(
           collection(db, 'productos'),
-          orderBy('name'),
+          orderBy('name', 'asc'),
           limit(cantidad)
         );
       }
@@ -43,13 +43,15 @@ export function ProductosProvider({ children }) {
       const snapshot = await getDocs(q);
       const lista = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-      if (!ultimoDoc) {
-        setProductos(lista); // Primera carga: reemplaza
-      } else {
-        setProductos(prev => [...prev, ...lista]); // Siguientes: acumula
-      }
+      // Acumula si hay más páginas
+      setProductos(prev => (ultimoDoc ? [...prev, ...lista] : lista));
 
-      setUltimoDoc(snapshot.docs[snapshot.docs.length - 1] || null);
+      // Actualiza ultimoDoc solo si hay docs
+      if (snapshot.docs.length > 0) {
+        setUltimoDoc(snapshot.docs[snapshot.docs.length - 1]);
+      } else {
+        setUltimoDoc(null);
+      }
 
       return { productos: lista, ultimoDoc: snapshot.docs[snapshot.docs.length - 1] || null };
     } catch (error) {
@@ -58,16 +60,13 @@ export function ProductosProvider({ children }) {
     }
   }
 
-  // Agregar producto y ponerlo en el contexto local directo
+  // ✅ Agregar producto
   async function agregarProducto(producto) {
     try {
       const productosRef = collection(db, 'productos');
       const docRef = await addDoc(productosRef, producto);
       console.log("Producto agregado con ID:", docRef.id);
-
-      // Lo agregamos directo al principio del array
       setProductos(prev => [{ id: docRef.id, ...producto }, ...prev]);
-
       return { id: docRef.id, ...producto };
     } catch (error) {
       console.error("Error al agregar producto:", error);
@@ -75,7 +74,7 @@ export function ProductosProvider({ children }) {
     }
   }
 
-  // Obtener un producto por ID
+  // ✅ Obtener un producto por ID
   async function obtenerProductoFirebase(id) {
     try {
       const docRef = doc(db, 'productos', id);
@@ -93,7 +92,7 @@ export function ProductosProvider({ children }) {
     }
   }
 
-  // Editar producto
+  // ✅ Editar producto
   async function editarProducto(producto) {
     try {
       const docRef = doc(db, 'productos', producto.id);
@@ -111,7 +110,7 @@ export function ProductosProvider({ children }) {
     }
   }
 
-  // Eliminar producto
+  // ✅ Eliminar producto
   async function eliminarProducto(id) {
     const confirmar = window.confirm('¿Estás seguro de eliminar?');
     if (!confirmar) return;
@@ -127,6 +126,12 @@ export function ProductosProvider({ children }) {
     }
   }
 
+  // ✅ Opcional: reiniciar productos (para búsquedas nuevas)
+  function reiniciarProductos() {
+    setProductos([]);
+    setUltimoDoc(null);
+  }
+
   return (
     <ProductosContext.Provider
       value={{
@@ -137,7 +142,8 @@ export function ProductosProvider({ children }) {
         productoEncontrado,
         editarProducto,
         eliminarProducto,
-        ultimoDoc
+        ultimoDoc,
+        reiniciarProductos
       }}
     >
       {children}
