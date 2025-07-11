@@ -27,14 +27,15 @@ import {
 
 // ⚙️ Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBefwQXfYl6dcv-q6lWu5F_OhJgkLXRKTY",
-  authDomain: "prueba--auth.firebaseapp.com",
-  projectId: "prueba--auth",
-  storageBucket: "prueba--auth.appspot.com",
-  messagingSenderId: "977583228123",
-  appId: "1:977583228123:web:d9505fb6ef78bb904978fe",
-  measurementId: "G-1WCQ2S02MH"
-};
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  };
+  
 
 // 🔥 Inicialización
 const app = initializeApp(firebaseConfig);
