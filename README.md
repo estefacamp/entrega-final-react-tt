@@ -27,8 +27,8 @@ La aplicación consiste en un **e-commerce simple**, implementado en React, que 
 - 🌍 **Vercel** para el deploy en producción
 
 ---ingresar como admin---
-admin@gmail.com
-test12
+mail:admin@gmail.com
+password:test12
 
 ## 💻 Entorno de desarrollo
 
