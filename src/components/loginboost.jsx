@@ -120,7 +120,7 @@ function LoginBoostrap() {
           </div>
         </Form>
       ) : (
-        <Form onSubmit={registrarNuevoUsuario} className="p-3 border rounded shadow w-25">
+        <Form onSubmit={registrarNuevoUsuario} className="p-3 border rounded shadow w-100 w-md-50 w-lg-25">
           <h4 className="text-center mb-3">Registrarse</h4>
           <Form.Group className="mb-2">
             <Form.Label>Email</Form.Label>
