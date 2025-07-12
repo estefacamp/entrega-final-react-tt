@@ -12,18 +12,21 @@ function ProductosContainerFirebase() {
   const [noHayMas, setNoHayMas] = useState(false);
 
   useEffect(() => {
+    console.log("🔥 useEffect montado, llamando cargarMas...");
     cargarMas();
   }, []);
 
   const cargarMas = async () => {
+    console.log("🔥 Cargando más productos desde Firestore...");
     setCargando(true);
     try {
-      const { ultimoDoc: nuevoUltimo } = await obtenerProductosPaginados(5);
-      if (!nuevoUltimo) {
+      const resultado = await obtenerProductosPaginados(5);
+      console.log("🔥 Resultado de Firestore:", resultado);
+      if (!resultado.ultimoDoc) {
         setNoHayMas(true);
       }
     } catch (error) {
-      console.error("Error al cargar más productos:", error);
+      console.error("🔥 Error al cargar más productos:", error);
     } finally {
       setCargando(false);
     }
@@ -32,6 +35,8 @@ function ProductosContainerFirebase() {
   const filtrados = productos.filter((producto) =>
     producto.name.toLowerCase().includes(busqueda.toLowerCase())
   );
+
+  console.log("🔥 Productos filtrados:", filtrados);
 
   return (
     <>
